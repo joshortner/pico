@@ -1,6 +1,8 @@
 {
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "bitset": "c",
+        "set": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

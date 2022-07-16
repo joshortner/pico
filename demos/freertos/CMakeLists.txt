@@ -2,8 +2,11 @@
 cmake_minimum_required(VERSION 3.12)
 
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-set(FREERTOS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../FreeRTOS-Kernel)
+set(FREERTOS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/freertos)
 set(ENV{PICO_SDK_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/pico-sdk)
+
+#add_subdirectory(${STELLA_DIR} ${STELLA_DIR}/build/lib)
+add_subdirectory(${FREERTOS_DIR} ${FREERTOS_DIR}/build/lib)
 
 # Include build functions from Pico SDK
 include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
@@ -30,7 +33,7 @@ pico_add_extra_outputs(${PROJECT_NAME})
 target_link_libraries(
     ${PROJECT_NAME} 
     pico_stdlib
-    freertos_kernel
+    freertos
 )
 
 # Enable usb output, disable uart output

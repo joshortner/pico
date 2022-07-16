@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.7.1)
+set(CMAKE_CXX_STANDARD 17)
+
+project(freertos)
+
+set(ENV{PICO_SDK_FREERTOS_SOURCE} ${CMAKE_CURRENT_SOURCE_DIR}/FreeRTOS-Kernel)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+add_library(
+    freertos
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/event_groups.c
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/list.c
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/queue.c
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/stream_buffer.c
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/tasks.c
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/timers.c
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/portable/MemMang/heap_3.c
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/portable/GCC/ARM_CM0/port.c
+)
+
+target_include_directories(
+    freertos 
+    PUBLIC
+    .
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/include
+    $ENV{PICO_SDK_FREERTOS_SOURCE}/portable/GCC/ARM_CM0
+)
+
+set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+)
