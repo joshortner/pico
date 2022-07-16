@@ -1,11 +1,12 @@
 # Set minimum required version of CMake
 cmake_minimum_required(VERSION 3.12)
 
-set(PICO_SDK, "../../lib/pico-sdk")
+set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(ENV{PICO_SDK_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/pico-sdk)
 
 # Include build functions from Pico SDK
-#include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
-include(${PICO_SDK}/external/pico_sdk_import.cmake)
+include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+#include(${PICO_SDK}/external/pico_sdk_import.cmake)
 
 # Set name of project (as PROJECT_NAME) and C/C++ standards
 project(blink C CXX ASM)
@@ -17,7 +18,7 @@ pico_sdk_init()
 
 # Tell CMake where to find the executable source file
 add_executable(${PROJECT_NAME} 
-    main.c
+    ${SRC_DIR}/main.c
 )
 
 # Create map/bin/hex/uf2 files
