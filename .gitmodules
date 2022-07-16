@@ -1,3 +1,9 @@
 [submodule "lib/freertos/FreeRTOS-Kernel"]
 	path = lib/freertos/FreeRTOS-Kernel
 	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+[submodule "lib/pico-sdk"]
+	path = lib/pico-sdk
+	url = https://github.com/joshortner/pico.git
+[submodule "pico-sdk"]
+	path = pico-sdk
+	url = https://github.com/joshortner/pico.git
