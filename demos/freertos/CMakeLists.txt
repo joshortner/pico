@@ -5,17 +5,16 @@ set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(FREERTOS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/freertos)
 set(ENV{PICO_SDK_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/pico-sdk)
 
-#add_subdirectory(${STELLA_DIR} ${STELLA_DIR}/build/lib)
-add_subdirectory(${FREERTOS_DIR} ${FREERTOS_DIR}/build/lib)
-
 # Include build functions from Pico SDK
 include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
-#include(${PICO_SDK}/external/pico_sdk_import.cmake)
 
 # Set name of project (as PROJECT_NAME) and C/C++ standards
-project(blink C CXX ASM)
+project(freertos_demo C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
+
+# NOOOOOTTTTEEE: THIS SHOULD COME AFTER COMPILER DETECTION (THREE LINES ABOVE), OTHERWISE BAD THINGS HAPPEN
+add_subdirectory(${FREERTOS_DIR} ${FREERTOS_DIR}/build/lib)
 
 # Creates a pico-sdk subdirectory in our project for the libraries
 pico_sdk_init()

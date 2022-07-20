@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.7.1)
-set(CMAKE_CXX_STANDARD 17)
 
-project(freertos)
+project(freertos C CXX ASM)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 set(ENV{PICO_SDK_FREERTOS_SOURCE} ${CMAKE_CURRENT_SOURCE_DIR}/FreeRTOS-Kernel)
 
